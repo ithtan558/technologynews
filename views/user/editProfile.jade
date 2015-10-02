@@ -1,0 +1,75 @@
+div.container
+	div.page-header
+		h1 Edit Profile
+	if errors
+		each error in errors
+			div.alert.alert-danger
+				span #{error.error}
+	if saved
+		div.alert.alert-success
+			span Your profile has been saved
+	div.col-sm-6.col-md-6
+		form.form-horizontal(method='post', role='form', ng-submit="updateUser()", name="editUserForm", novalidate)
+			input(name='_csrf', type='hidden', value=csrfToken)
+			div.form-group
+				label.col-sm-3 Dislpay name
+				div.col-sm-9
+					input.form-control(
+						placeholder='Your display name',
+						required=true,
+						name='displayname',
+						type='text',
+						ng-model='formData.displayname')
+					p.help-block(ng-show='editUserForm.displayname.$dirty && editUserForm.displayname.$error.required') Displayname is required.
+			div.form-group
+				label.col-sm-3 Email
+				div.col-sm-9
+					input.form-control(
+						placeholder='Your email',
+						required=true,
+						name='email',
+						type='email',
+						ng-model='formData.email')
+					p.help-block(ng-show='editUserForm.email.$dirty && editUserForm.email.$error.required') Email is required.
+					p.help-block(ng-show='editUserForm.email.$dirty && editUserForm.email.$error.email') Invalid email address.
+			div.form-group
+				label.col-sm-3 Street address
+				div.col-sm-9
+					input.form-control(placeholder='e.g. 123 Sunny Ave',
+						required=true,
+						name='location',
+						type='text',
+						ng-model='formData.location')
+					p.help-block(ng-show='editUserForm.location.$dirty && editUserForm.location.$error.required') Location is required.
+			div.form-group
+				label.col-sm-3 Skills
+				div.col-sm-9
+					tags-input(ng-model='formData.skills', min-tags='1', max-tags='10', name='skills', display-property='name' placeholder='Add a country' replace-spaces-with-dashes='false')
+						auto-complete(source='loadCountries($query)', min-length='0', load-on-focus='true', load-on-empty='true', max-results-to-show='32')
+					p.help-block(ng-show='editUserForm.skills.$dirty && editUserForm.skills.$error.minTags') Skills is required.
+					p.help-block(ng-show='editUserForm.skills.$dirty && editUserForm.skills.$error.maxTags') Skills isn't more than 10 item.
+			div.form-group
+				label.col-sm-3 Birthday
+				div.col-sm-9
+					p.input-group
+						input.form-control(placeholder='2015/01/01', required=true, name='birthday', type='text', ng-model='formData.birthday', datepicker-popup='{{format}}', is-open='status.opened')
+						span.input-group-btn
+							button.btn.btn-default(type='button', ng-click='open($event)')
+								i.glyphicon.glyphicon-calendar
+						p.help-block(ng-show='editUserForm.birthday.$dirty && editUserForm.birthday.$error.required') Birthday is required.
+			div.form-group
+				div.col-sm-offset-3.col-sm-9
+					button.login.btn.btn-primary(type='submit', ng-disabled='editUserForm.$invalid || editUserForm.$pending') Save
+	div.col-sm-6.col-md-6
+		form.login-form.form-horizontal(method='post', role='form')
+			input(name='_csrf', type='hidden', value=csrfToken)
+			div.form-group.text-right
+				label.col-sm-12 Avatar
+				div.col-sm-12
+					.account-picture-block
+						img#user-current-picture.user-profile-picture.img-thumbnail(ng-src='{{userAvatar}}', style='margin-top: 10px;')
+						br
+						br
+						button.btn.btn-primary(ng-click='uploadImage()') Edit
+	div.col-sm-12.col-md-12.pull-right
+			a(href="/") Return to home page

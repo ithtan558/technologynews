@@ -1,0 +1,38 @@
+.container
+	.row
+		.col-md-3
+			include ../partials/left
+		.col-md-9(ng-if="listArticle.length>0")
+			.well.hidden-xs
+				.row
+					.col-xs-12
+						p
+						| Whether you are a beginner looking for a coding tutor or an experienced engineer looking for expert guidance, Codementor can help you achieve your goals, faster.
+			.row(ng-repeat-start="article in listArticle | filter:search | orderBy:['-creationDate']|startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit")
+				.col-sm-4
+					a(href='#')
+						img.img-responsive(src='{{article.thumbnail}}', alt='')
+				.col-sm-8
+					h4.title(style='margin-top:0px'){{article.title}} &nbsp
+						a(ui-sref="article-edit({id: article._id})")
+							small
+								span.fa.fa-edit
+								| Edit
+					p.text-muted
+						small
+							span.fa.fa-tags &nbsp
+							span.label.label-info.tags(ng-repeat="tag in article.tag"){{tag}}
+					p(ng-bind-html='article.content | cut:true:200')
+					ul.list-inline
+						li
+							small
+								span.fa.fa-user
+								| &nbsp Create by - 
+								a(ng-bind='article.userId.displayname')
+						li
+							small
+								span.fa.fa-calendar-times-o
+								| &nbsp Create date - 
+								a{{article.creationDate | date:'medium'}}
+			<hr ng-repeat-end>
+			pagination.pagination-sm(total-items='listArticle.length', ng-model='currentPage', max-size='itemsPerPage', boundary-links='false', rotate='false', num-pages='numPages', previous-text='←', next-text='→')

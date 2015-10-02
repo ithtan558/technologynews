@@ -1,0 +1,50 @@
+h4(style='margin-top:0px;') Search
+.input-group
+	input#srch-term.form-control(type='text', placeholder='Search', name='srch-term', ng-model='search')
+	.input-group-btn
+		button.btn.btn-default(type='submit')
+			i.fa.fa-search
+button.btn.btn-default.btn-sm.btn-block.hidden-lg.hidden-md(type='button', data-toggle='collapse', data-target='#demo')
+	| Refine your search 
+	span.caret
+#demo.collapse.in
+	hr
+	.list-group.list-group
+		h4 Categories
+		a.list-group-item(ng-repeat='category in listCategory', ui-sref='home.articleCategory({slug: (category.name | friendlyUrl), id:category._id})',ng-class='{active: category_id == category._id}')
+			span.badge(ng-bind='listArticleAll | countArticleByCategory: category._id')
+			|  {{category.name}}
+		#categories.collapse
+			a.list-group-item(href='#')
+				span.badge 14
+				|  Active item
+			a.list-group-item(href='#')
+				span.badge 3
+				|  Second item
+			a.list-group-item(href='#')
+				span.badge 25
+				|  Third item
+			a.list-group-item(href='#')
+				span.badge 14
+				|  Active item
+			a.list-group-item(href='#')
+				span.badge 3
+				|  Second item
+		button.btn.btn-default.btn-sm.btn-block(data-toggle='collapse', data-target='#categories')
+			| More 
+			span.caret
+		hr
+		h4 Tags
+		a.list-group-item(ng-repeat='skill in listSkills', ui-sref='home.articleTag({slug: (skill.name | friendlyUrl), id:skill._id})',ng-class='{active: skill_id == skill._id}')
+			span.badge(ng-bind='listArticleAll | countArticleByTag: skill.name')
+			|  {{skill.name}}
+.hidden-sm.hidden-xs
+	hr
+	.well
+		h4 About ShareKnowledge
+		p This is website all share knowledge. You can add artile and question here.
+		button.btn.btn-sm.btn-warning Learn more
+		hr
+		p.text-center
+			| Already a member? 
+			a(ui-sref='register_login') Sign in.

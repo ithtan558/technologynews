@@ -1,0 +1,49 @@
+section
+	.container
+		.row
+			.col-sm-12.col-md-12
+				form.form-horizontal(ng-submit="edit()", method='POST', role='form', name='createArticle')
+					.form-group
+						legend Edit article
+					.form-group
+						label.col-sm-2.control-label(for='input') Title:
+						.col-sm-10
+							input#input.form-control(type='text', ng-model='articleData.title', required='required', title='', autofocus)
+					.form-group
+						label.col-sm-2.control-label(for='textarea') Content:
+						.col-sm-10
+							div(text-angular='text-angular',name='content', ng-model='articleData.content', ta-disabled='disabled')
+					.form-group
+						label.col-sm-2.control-label(for='input') Category:
+						.col-sm-10
+							select#input.form-control(ng-model='articleData.categoryId', required='required', title='')
+								option(value='') -- Select One --
+								option(ng-repeat='category in listCategory', value='{{category._id}}'){{category.name}}
+					.form-group
+						label.col-sm-2.control-label(for='input') Tag:
+						.col-sm-10
+							tags-input(ng-model='articleData.tag', min-tags='1', max-tags='10', name='tag', display-property='name' placeholder='Add a country' replace-spaces-with-dashes='false')
+								auto-complete(source='loadCountries($query)', min-length='0', load-on-focus='true', load-on-empty='true', max-results-to-show='32')
+							p.help-block(ng-show='createArticle.tag.$dirty && createArticle.tag.$error.minTags') Tags is required.
+							p.help-block(ng-show='createArticle.tag.$dirty && createArticle.tag.$error.maxTags') Tags isn't more than 10 item.
+					.form-group
+						label.col-sm-2.control-label(for='input') Thumbnail:
+						.col-sm-10
+							input(type='file', ngf-select='uploadThumnail($files)', accept='image/*', value='Chọn tập tin hình ảnh', ng-model='articleData.thumbnail', ng-show='showUpload')
+							p.help-block
+								| Bạn chỉ có thể tải lên được các file PNG, JPG hoặc GIF 
+								span#file-size-block
+									| (tối đa 
+									span#upload-file-size 1
+									|  MB.)
+							.alert.alert-warning.alert-dismissable(ng-show='showAlert')
+								button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+								| Tập tin có dung lượng tối đa là 1M, bạn vui lòng chọn hình ảnh khác
+
+							.progress.progress-striped(style='border-radius:0px;margin-top:10px;')
+								.progress-bar(role='progressbar', aria-valuemin='0', aria-valuemax='100', style='width: {{uploadper}}%')
+									| {{uploadper}}%
+							img.img-responsive(ng-src='images/uploads/articles/{{imgUrl}}', alt='Avatar', style='max-width:200px;')
+					.form-group
+						.col-sm-10.col-sm-offset-2
+							button.btn.btn-primary(type='submit', ng-disabled='createArticle.$invalid || createArticle.$pending') Submit

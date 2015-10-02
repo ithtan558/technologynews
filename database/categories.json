@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5608fcd13e92cd3040dcd414"},"description":"AngularJs","name":"AngularJs","status":1}
+{"_id":{"$oid":"5608fd603e92cd3040dcd415"},"description":"Nodejs","name":"Nodejs","status":1}
+{"_id":{"$oid":"5608fd693e92cd3040dcd416"},"description":"Laravel","name":"Laravel","status":1}
+{"_id":{"$oid":"56090faf3e92cd3040dcd417"},"description":"Codeigniter","name":"Codeigniter","status":1}
+{"_id":{"$oid":"56090fbf3e92cd3040dcd418"},"description":"Bootstapt","name":"Bootstapt","status":1}
+{"_id":{"$oid":"56090fe73e92cd3040dcd419"},"description":"Mean","name":"Mean","status":1}

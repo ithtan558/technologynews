@@ -1,0 +1,55 @@
+.container
+	.row
+		.col-md-3
+			include ../partials/left
+		.col-md-9
+			ui-breadcrumbs(displayname-property='data.displayName', abstract-proxy-property='data.proxy', template-url='partials/breadcrumbs')
+			h1{{articleData.title}}
+			hr
+			.ui--blog-metas.clearfix
+				span
+					span.ui--blog-metas-left
+						span.ui--meta-categories
+							a(href='http://bootstraptor.com/category/uncategorized/', title='View all posts in Uncategorized', rel='category tag') {{articleData.userId.displayname}}
+						span.ui--blog-separator /
+						span.datetime {{articleData.creationDate | date:'medium'}}
+						span.ui--blog-separator /
+						span.ui--meta-tags
+							| Tags: 
+							a(href='http://bootstraptor.com/tag/bootstrap/', rel='tag', ng-repeat="tag in articleData.tag") {{tag}}{{$last ? '' : ', '}}
+			hr
+			div(ng-bind-html='articleData.content')
+			hr
+			.well
+				h4 Leave a Comment:
+				form(method='post', role='form', ng-submit="create()", name="commentArticle", novalidate)
+					input(type='hidden', ng-model='commentData.articleId')
+					.form-group
+						textarea.form-control(rows='3', ng-model='commentData.content', ng-minlength='10', required)
+						p.help-block(ng-show='commentArticle.content.$dirty && commentArticle.content.$error.required') Content is required.
+						p.help-block(ng-show='commentArticle.content.$dirty && commentArticle.content.$error.minlength') Content is required to be at least 10 characters
+					button.btn.btn-primary(type='submit', ng-disabled='commentArticle.$invalid || commentArticle.$pending') Submit
+			hr
+			.media(ng-repeat='comment in listComment')
+				a.pull-left(href='#')
+					img.media-object(src='{{comment.userId.avatar}}', alt='{{comment.userId.displayname}}', style='width:64px; height:64px')
+				.media-body
+					h4.media-heading{{comment.userId.displayname}} &nbsp
+						small {{comment.creationDate | date:'medium'}}
+					{{comment.content}}
+			//- .media
+			//- 	a.pull-left(href='#')
+			//- 		img.media-object(src='http://placehold.it/64x64', alt='')
+			//- 	.media-body
+			//- 		h4.media-heading
+			//- 			| Start Bootstrap
+			//- 			small August 25, 2014 at 9:30 PM
+			//- 		|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+			//- 		.media
+			//- 			a.pull-left(href='#')
+			//- 				img.media-object(src='http://placehold.it/64x64', alt='')
+			//- 			.media-body
+			//- 				h4.media-heading
+			//- 					| Nested Start Bootstrap
+			//- 					small August 25, 2014 at 9:30 PM
+			//- 				|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.

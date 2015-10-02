@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5600f57f82bf5dc24eaaf431"},"name":"iOS","status":1}
+{"_id":{"$oid":"5600f5a582bf5dc24eaaf432"},"name":"Android","status":1}
+{"_id":{"$oid":"5600f5b382bf5dc24eaaf433"},"name":"WinPhone","status":1}

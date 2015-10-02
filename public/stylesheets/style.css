@@ -1,0 +1,262 @@
+body{
+	margin-top: 70px;
+}
+.alert-flash{
+	bottom: 12px;
+	display: block;
+	position: fixed;
+	right: 12px;
+	z-index: 999999;
+}
+.alert-flash:hover{
+	box-shadow: 0 0 12px #000;
+	cursor: pointer;
+	filter: alpha(opacity=100);
+	moz-box-shadow: 0 0 12px #000;
+	ms-filter: alpha(opacity=100);
+	opacity: 1;
+	webkit-box-shadow: 0 0 12px #000;
+}
+.alert-flash{
+	background-position: 15px center;
+	background-repeat: no-repeat;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 0 0 12px #999;
+	color: #fff;
+	filter: alpha(opacity=100);
+	margin: 0 0 6px;
+	moz-border-radius: 3px 3px 3px 3px;
+	moz-box-shadow: 0 0 12px #999;
+	ms-filter: alpha(opacity=100);
+	opacity: 1;
+	padding: 15px 15px 15px 50px;
+	webkit-border-radius: 3px 3px 3px 3px;
+	webkit-box-shadow: 0 0 12px #999;
+	width: 300px;
+}
+.alert-flash *{
+	box-sizing: border-box;
+	display: block;
+	moz-box-sizing: border-box;
+	webkit-box-sizing: border-box;
+}
+.alert-flash .close{
+	color: #fff;
+	filter: alpha(opacity=80);
+	float: right;
+	font-size: 15px;
+	font-weight: bold;
+	ms-filter: alpha(opacity=80);
+	opacity: .8;
+	outline: none !important;
+	position: relative;
+	right: -0.3em;
+	text-shadow: 0 1px 0 #fff;
+	top: -0.3em;
+	webkit-text-shadow: 0 1px 0 #fff;
+}
+.alert-flash.alert-danger{
+	background: #bd362f url("../images/alert-danger.png") no-repeat 15px center !important;
+}
+.alert-flash.alert-success{
+	background: #51a351 url("../images/alert-success.png") no-repeat 15px center !important;
+}
+.alert-flash.alert-info{
+	background: #2f96b4 url("../images/alert-info.png") no-repeat 15px center !important;
+}
+.alert-flash.alert-warning{
+	background: #f89406 url("../images/alert-warning.png") no-repeat 15px center !important;
+}
+/* Developer Huynh An */
+/* =Public
+---------------------------------------------------------------*/
+.ui--blog-metas .ui--blog-separator {
+    margin: 0 6px;
+}
+/* =Register or Sign in Page
+-------------------------------------------------------------- */
+.signin {
+	text-align: center;
+	background-color: #ffffff;
+	padding: 40px;
+	border: solid 1px #e7e7e7;
+	margin-bottom: 24px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+	border-radius: 3px;
+}
+.signin form input {
+	margin-bottom: 10px;
+}
+.signin form .forgot {
+	padding: 0 0 20px 0;
+	font-weight: 300;
+}
+.signin form .forgot .checkbox {
+	font-weight: 300;
+}
+.signin form .forgot .checkbox input[type="checkbox"] {
+	float: none;
+}
+.social_sign h3 {
+	font-weight: 300;
+	font-size: 20px;
+	margin-bottom: 30px;
+	line-height: 22px;
+}
+.social_sign a {
+	background-color: #428bca;
+	color: #ffffff;
+	text-align: center;
+	display: inline-block;
+	margin: 0 8px;
+	border-radius: 50%;
+	font-size: 30px;
+	width: 66px;
+	height: 66px;
+	line-height: 30px;
+	padding: 18px;
+	-webkit-transition: all 100ms linear;
+	-o-transition: all 100ms linear;
+	transition: all 100ms linear;
+}
+.social_sign a.fb {
+	background-color: #3B5998;
+}
+.social_sign a.tw {
+	background-color: #00ACEE;
+}
+.social_sign a.gp {
+	background-color: #E44B39;
+}
+.social_sign a:link,
+.social_sign a:visited {
+	color: #ffffff;
+}
+.social_sign a:hover,
+.social_sign a:active {
+	-moz-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-webkit-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-o-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-ms-transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+}
+.or {
+	overflow: hidden;
+	text-align: center;
+	padding: 30px 0 0 0;
+}
+.or .or_l,
+.or .or_r {
+	width: 40%;
+	border-bottom: solid 1px #cccccc;
+	display: inline-block;
+	position: relative;
+	left: 0px;
+	top: -4px;
+}
+.or span {
+	width: 8%;
+	display: inline-block;
+}
+p.sign_title {
+	font-weight: 300;
+	padding: 30px 0 20px 0;
+}
+.signup {
+	text-align: center;
+	background-color: #ffffff;
+	padding: 40px;
+	border: solid 1px #e7e7e7;
+	margin-bottom: 24px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+	border-radius: 3px;
+}
+.signup form input {
+	margin-bottom: 10px;
+}
+.signup form .checkbox {
+	font-weight: 300;
+}
+.signup form .checkbox input[type="checkbox"] {
+	float: none;
+}
+.signup form .btn {
+	margin-top: 47px;
+}
+/* =404 Page
+-------------------------------------------------------------- */
+.four-o-four i {
+	font-size: 80px;
+}
+/* =Contact Page
+-------------------------------------------------------------- */
+.contact_form label {
+	font-weight: 300;
+}
+.contact_form .row {
+	margin-bottom: 35px;
+}
+#logout a{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#logout span.ng-binding:after{
+	padding-left: 10px;
+	padding-right: 10px;
+	content : "|";
+}
+.label.tags{
+	margin-right: 5px;
+}
+.label.tags:last-child{
+	margin-right: 0px;
+}
+.full button span {
+	background-color: limegreen;
+	border-radius: 32px;
+	color: black;
+}
+.partially button span {
+	background-color: orange;
+	border-radius: 32px;
+	color: black;
+}
+/* Footer */
+footer {
+	margin-top: 40px;
+	color: #fff;
+	border-top: solid 2px #fff;
+	background: url(../images/backgrounds/wild_oliva_dark.png);
+	background: none #222222;
+}
+footer a:hover,
+footer a:active {
+	color: #2a6496;
+	text-decoration: none;
+}
+.copyright {
+	border-top: solid 1px #000;
+	padding: 15px 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-weight: 300;
+	color: #999999;
+	font-size: 13px;
+}
+/* End footer*/
+.breadcrumb{
+	padding-left: 0px;
+}
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover{
+	background-color: #e7e7e7;
+}
+/* End developer Huynh An */

@@ -1,0 +1,52 @@
+nav.navbar.navbar-default.navbar-fixed-top(ng-controller="userController")
+	.container
+		.navbar-header
+			button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+				span.sr-only Toggle navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a.navbar-brand(ui-sref="home") Share knowledge
+		#navbar.navbar-collapse.collapse
+			ul.nav.navbar-nav
+				li.active
+					a(ui-sref="createArticle") Create article
+				li
+					a(href='#about') Blog
+				li
+					a(href='#contact') Contact
+			ul.nav.navbar-nav.navbar-right
+				li(ng-if="!currentUser")
+					a(ui-sref="home.register_login")
+						|  Register / Sign in
+						span.sr-only (current)
+				li.dropdown(ng-if="currentUser")
+					a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+						| {{currentUser.displayname}} 
+						span.caret
+					ul.dropdown-menu
+						li
+							a(ui-sref='listArticle') Dashboard
+						li
+							a(ui-sref="profile({ id:currentUser._id })") Account
+						li
+							a(href="javascript:void(0)" ng-click="logout()") Logout
+//- 		i.fa.fa-user
+//- 		span  {{currentUser.displayname}}
+		// /.nav-collapse
+//- #social_media_wrapper
+//- 	a(href='https://www.facebook.com')
+//- 		i.fa.fa-facebook
+//- 	a(href='https://twitter.com/leonartgr')
+//- 		i.fa.fa-twitter
+//- 	a(href='#googleplus')
+//- 		i.fa.fa-google-plus
+//- #sign(ng-if="!currentUser")
+//- 	a(ui-sref="register_login")
+//- 		i.fa.fa-user
+//- 		span Register/Sign in
+//- #logout(ng-if="currentUser")
+//- 	a(ui-sref="profile({ id:currentUser._id })")
+//- 		i.fa.fa-user
+//- 		span  {{currentUser.displayname}}
+//- 	a(href="javascript:void(0)" ng-click="logout()") Logout

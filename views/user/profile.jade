@@ -1,0 +1,20 @@
+section
+	.container
+		.panel-body
+			.row
+				.col-xs-12.col-sm-4.text-center(style='position: relative;-webkit-transform: translateY(-10%);-ms-transform: translateY(-10%);transform: translateY(10%);')
+					img.img-thumbnail.center-block.img-responsive(src='{{userInfo.avatar}}', alt='')
+				.col-xs-12.col-sm-8
+					h2(ng-bind="userInfo.displayname")
+					p
+						strong Email: 
+						|  {{userInfo.email}}
+					p
+						strong Address: 
+						|  {{userInfo.location}}
+					p
+						strong Skills: 
+						span.label.label-info.tags(ng-repeat="skill in skills"){{skill}}
+					p
+						strong Action: 
+						a.btn.btn-primary(ui-sref="editProfile({ id:currentUser._id })") Edit profile
