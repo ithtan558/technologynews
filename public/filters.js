@@ -37,11 +37,11 @@ angular.module('appFilters', [])
 .filter('startFrom', function() {
     return function(input, start) {
         if(input) {
-            start = +start; /*parse to int*/
+            start = +start; //parse to int
             return input.slice(start);
         }
         return [];
-    };
+    }
 })
 .filter('getBadge', function () {
   return function (items, score) {

@@ -6,7 +6,8 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var schema = mongoose.Schema({
     articleId:   {type: ObjectId, ref: 'Article',index:true },
     userId:   {type: ObjectId, ref: 'User',index:true },
-    commetId:   {type: ObjectId},
+    commentId:   {type: ObjectId, ref: 'Comment',index:true },
+    child:   {type: Number, default: 0 },
     content:   {type: 'String', required: true},
     creationDate:   {type: 'Date', default: Date.now},
     lastEditDate:   {type: 'Date', default: Date.now},

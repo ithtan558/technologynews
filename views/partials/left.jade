@@ -14,25 +14,25 @@ button.btn.btn-default.btn-sm.btn-block.hidden-lg.hidden-md(type='button', data-
 		a.list-group-item(ng-repeat='category in listCategory', ui-sref='home.articleCategory({slug: (category.name | friendlyUrl), id:category._id})',ng-class='{active: category_id == category._id}')
 			span.badge(ng-bind='listArticleAll | countArticleByCategory: category._id')
 			|  {{category.name}}
-		#categories.collapse
-			a.list-group-item(href='#')
-				span.badge 14
-				|  Active item
-			a.list-group-item(href='#')
-				span.badge 3
-				|  Second item
-			a.list-group-item(href='#')
-				span.badge 25
-				|  Third item
-			a.list-group-item(href='#')
-				span.badge 14
-				|  Active item
-			a.list-group-item(href='#')
-				span.badge 3
-				|  Second item
-		button.btn.btn-default.btn-sm.btn-block(data-toggle='collapse', data-target='#categories')
-			| More 
-			span.caret
+		//- #categories.collapse
+		//- 	a.list-group-item(href='#')
+		//- 		span.badge 14
+		//- 		|  Active item
+		//- 	a.list-group-item(href='#')
+		//- 		span.badge 3
+		//- 		|  Second item
+		//- 	a.list-group-item(href='#')
+		//- 		span.badge 25
+		//- 		|  Third item
+		//- 	a.list-group-item(href='#')
+		//- 		span.badge 14
+		//- 		|  Active item
+		//- 	a.list-group-item(href='#')
+		//- 		span.badge 3
+		//- 		|  Second item
+		//- button.btn.btn-default.btn-sm.btn-block(data-toggle='collapse', data-target='#categories')
+		//- 	| More 
+		//- 	span.caret
 		hr
 		h4 Tags
 		a.list-group-item(ng-repeat='skill in listSkills', ui-sref='home.articleTag({slug: (skill.name | friendlyUrl), id:skill._id})',ng-class='{active: skill_id == skill._id}')

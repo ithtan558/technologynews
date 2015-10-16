@@ -84,6 +84,7 @@ angular.module('articleCtrl',[])
 			    });
 			/*Biến lưu trữ dữ liệu form*/
 			$rootScope.commentData = {};
+			//Create parent comment
 			$scope.create = function() {
 				$http.get('/loggedin').success(function(data){
 					if(data==='0'){
@@ -97,14 +98,63 @@ angular.module('articleCtrl',[])
 							Comment.create($rootScope.commentData)
 								.success(function(data){
 									flash.success="Comment thành công";
-									$http.get('/api/getCommentArticle/list/:article_id')
-										.success(function(data))
+									Comment.getCommentArticle()
+										.success(function(data){
+											$scope.listComment=data;
+										})
+										.error(function() {
+									        console.log('error');
+									    });
 								})
 								.error(function(){
 									flash.error = 'Có lỗi trong quá trình comment';
 									$scope.Proccess = false;
 									$state.go("createComment");
 								});
+							$scope.commentData = null;
+						}
+	                }
+				})
+				
+			};
+			//Create child comment
+			$rootScope.commentDataChild = {};
+			$scope.createChild = function(comment) {
+				$http.get('/loggedin').success(function(data){
+					if(data==='0'){
+	                    flash.error='Bạn cần đăng nhập để thực hiện hành động này !';
+	                    $state.go('home.register_login');
+	                }
+	                else{
+	                	$scope.Proccess=true;
+						/*Kiểm tra dữ liệu rỗng*/
+						$rootScope.commentDataChild.commentId = comment._id;
+						$rootScope.commentDataChild.articleId = comment.articleId._id;
+						if (!$.isEmptyObject($rootScope.commentDataChild)) {
+							Comment.create($rootScope.commentDataChild)
+								.success(function(data){
+									flash.success="Comment thành công";
+									Comment.getCommentArticle()
+										.success(function(data){
+											$scope.listComment=data;
+										})
+										.error(function() {
+									        console.log('error');
+									    });
+									Comment.getCommentChildArticle()
+										.success(function(data){
+											$scope.listCommentChild=data;
+										})
+									    .error(function() {
+									        console.log('error');
+									    });
+								})
+								.error(function(){
+									flash.error = 'Có lỗi trong quá trình comment';
+									$scope.Proccess = false;
+									$state.go("createComment");
+								});
+							$scope.commentDataChild = null;
 						}
 	                }
 				})
@@ -114,6 +164,16 @@ angular.module('articleCtrl',[])
 			Comment.getCommentArticle()
 				.success(function(data){
 					$scope.listComment=data;
+					$scope.currentPage = 1;
+			        $scope.maxSize = 5;
+			        $scope.entryLimit = 10;
+				})
+			    .error(function() {
+			        console.log('error');
+			    });
+			Comment.getCommentChildArticle()
+				.success(function(data){
+					$scope.listCommentChild=data;
 					$scope.currentPage = 1;
 			        $scope.maxSize = 5;
 			        $scope.entryLimit = 10;

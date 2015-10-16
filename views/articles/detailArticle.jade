@@ -20,23 +20,53 @@
 			hr
 			div(ng-bind-html='articleData.content')
 			hr
-			.well
-				h4 Leave a Comment:
-				form(method='post', role='form', ng-submit="create()", name="commentArticle", novalidate)
-					input(type='hidden', ng-model='commentData.articleId')
-					.form-group
-						textarea.form-control(rows='3', ng-model='commentData.content', ng-minlength='10', required)
-						p.help-block(ng-show='commentArticle.content.$dirty && commentArticle.content.$error.required') Content is required.
-						p.help-block(ng-show='commentArticle.content.$dirty && commentArticle.content.$error.minlength') Content is required to be at least 10 characters
-					button.btn.btn-primary(type='submit', ng-disabled='commentArticle.$invalid || commentArticle.$pending') Submit
-			hr
-			.media(ng-repeat='comment in listComment')
+			//- Comment
+			.media.comment(ng-repeat-start='comment in listComment track by $index')
 				a.pull-left(href='#')
 					img.media-object(src='{{comment.userId.avatar}}', alt='{{comment.userId.displayname}}', style='width:64px; height:64px')
 				.media-body
 					h4.media-heading{{comment.userId.displayname}} &nbsp
 						small {{comment.creationDate | date:'medium'}}
-					{{comment.content}}
+					small{{comment.content}}
+					footer
+						menu
+							li.reply(data-role='reply-link')
+								a(href='#', data-action='reply', ng-click='$parent.selectedIndex=$index')
+									i.icon.icon-mobile.icon-reply
+									span.text Reply
+							li.bullet(aria-hidden='true') •
+							li.share
+								a.toggle.pull-left
+									span.text Share ›
+								ul
+									li.twitter
+										a(href='#', data-action='share:twitter') Twitter
+									li.facebook
+										a(href='#', data-action='share:facebook') Facebook
+									li.link
+										a(href='https://bootstrapbay.com/blog/working-bootstrap-contact-form/#comment-1764321305') Link
+							li.realtime(data-role='realtime-notification:1764321305')
+								span.realtime-replies(style='display:none;')
+								a.btn.btn-small(style='display:none;', href='#')
+					//- Comment child
+					.media.comment(ng-repeat='commentChild in listCommentChild track by $index', ng-if='commentChild.commentId == comment._id', class="{{$first ? '' : 'comment-child'}}")
+						hr
+						a.pull-left(href='#')
+							img.media-object(src='{{commentChild.userId.avatar}}', alt='{{commentChild.userId.displayname}}', style='width:64px; height:64px')
+						.media-body
+							h4.media-heading{{commentChild.userId.displayname}} &nbsp
+								small {{commentChild.creationDate | date:'medium'}}
+							small{{commentChild.content}}
+					.body-comment-child
+						form(method='post', role='form', ng-submit="createChild(comment)", name="commentChildArticle", novalidate, ng-show='$parent.selectedIndex == $index')
+							input(type='hidden', ng-model='commentDataChild.articleId')
+							.form-group
+								textarea.form-control(rows='3', ng-model='commentDataChild.content', ng-minlength='10', required)
+									p.help-block(ng-show='commentChildArticle.content.$dirty && commentChildArticle.content.$error.required') Content is required.
+									p.help-block(ng-show='commentChildArticle.content.$dirty && commentChildArticle.content.$error.minlength') Content is required to be at least 10 characters
+							button.btn.btn-primary(type='submit', ng-disabled='commentChildArticle.$invalid || commentChildArticle.$pending') Submit
+
+			hr(ng-repeat-end)
 			//- .media
 			//- 	a.pull-left(href='#')
 			//- 		img.media-object(src='http://placehold.it/64x64', alt='')
@@ -53,3 +83,12 @@
 			//- 					| Nested Start Bootstrap
 			//- 					small August 25, 2014 at 9:30 PM
 			//- 				|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+			.well
+				h4 Leave a Comment:
+				form(method='post', role='form', ng-submit="create()", name="commentArticle", novalidate)
+					input(type='hidden', ng-model='commentData.articleId')
+					.form-group
+						textarea.form-control(rows='3', ng-model='commentData.content', ng-minlength='10', required)
+						p.help-block(ng-show='commentArticle.content.$dirty && commentArticle.content.$error.required') Content is required.
+						p.help-block(ng-show='commentArticle.content.$dirty && commentArticle.content.$error.minlength') Content is required to be at least 10 characters
+					button.btn.btn-primary(type='submit', ng-disabled='commentArticle.$invalid || commentArticle.$pending') Submit

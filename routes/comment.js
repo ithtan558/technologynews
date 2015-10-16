@@ -22,7 +22,15 @@ module.exports = function (app) {
      });
     //get all comments of article
     app.get('/api/getCommentArticle/list/:article_id',function(req, res) {
-        Comment.find({$and: [ {isAcepted:1},{articleId:req.params.article_id} ]}).populate('userId').populate('articleId').exec(function(err, comment){
+        Comment.find({$and: [ {isAcepted:1},{articleId:req.params.article_id}, {child:0} ]}).populate('userId').populate('articleId').exec(function(err, comment){
+            if (err)
+                res.send(err)
+            else
+                res.json(comment);
+        });
+     });
+    app.get('/api/getCommentChildArticle/list/:article_id',function(req, res) {
+        Comment.find({$and: [ {isAcepted:1},{articleId:req.params.article_id}, {child:1} ]}).populate('userId').populate('articleId').exec(function(err, comment){
             if (err)
                 res.send(err)
             else
@@ -33,8 +41,11 @@ module.exports = function (app) {
     app.post('/api/comment/create', function(req, res){
         var newComment= new Comment();
         newComment.userId=req.user._id;
-        res.send(req.body);
         newComment.articleId=req.body.articleId;
+        newComment.commentId= req.body.commentId;
+        if(req.body.commentId){
+            newComment.child= 1;
+        }
         newComment.content= req.body.content;
         newComment.creationDate= new Date();
         newComment.status=1;

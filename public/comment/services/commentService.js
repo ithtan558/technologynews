@@ -10,6 +10,9 @@ angular.module('commentService', [])
             getCommentArticle: function(){
                 return $http.get('/api/getCommentArticle/list/'+ $stateParams.id);
             },
+            getCommentChildArticle: function(){
+                return $http.get('/api/getCommentChildArticle/list/'+ $stateParams.id);
+            },
             getOfUser: function(){
                 return $http.get('/api/comment/getOfUser');
             },

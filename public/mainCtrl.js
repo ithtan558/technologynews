@@ -72,17 +72,6 @@ angular.module('mainCtrl',[])
 			$scope.listSkills=data;
 		});
 		// get all article
-		Article.get()
-			.success(function(data){
-				$scope.listArticleAll=data;
-				$scope.listArticle=data;
-				$scope.currentPage = 1;
-		        $scope.maxSize = 5;
-		        $scope.entryLimit = 10;
-			})
-		    .error(function() {
-		        console.log('error');
-		    });
 		//upload images article
 		$scope.uploadThumnail = function($files) {
 			/*$files: an array of files selected, each file has name, size, and type.*/
