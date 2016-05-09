@@ -1,5 +1,5 @@
-angular.module('appRoutes',['ui.router', 'angularUtils.directives.uiBreadcrumbs']).config(['$stateProvider', '$urlRouterProvider','$locationProvider',
- function($stateProvider, $urlRouterProvider,$locationProvider){
+angular.module('appRoutes',['ui.router', 'angularUtils.directives.uiBreadcrumbs']).config(['$stateProvider', '$urlRouterProvider','$locationProvider', '$ocLazyLoadProvider',
+ function($stateProvider, $urlRouterProvider,$locationProvider, $ocLazyLoadProvider){
  /*Điều hướng 404*/
 	$urlRouterProvider.otherwise("/404");
 	$urlRouterProvider.when('/_=_', '/');
@@ -139,6 +139,22 @@ angular.module('appRoutes',['ui.router', 'angularUtils.directives.uiBreadcrumbs'
 		          return articleService.getNameTag($stateParams.id);
 		        }
 		    }
+	    })
+	    .state('chat',{
+	        url: "/chat",
+			views: {
+				'main@': {
+	        		templateUrl : 'chat/index',
+	        		controller :'chatController'
+				}
+			},
+			resolve: {
+                loadMyCtrl: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load('/chat/controllers/chatCtrl.js');
+                }]
+            },
+	        title: 'Chatting',
+	        access: { requiredLogin: true }
 	    })
 
 	    /* End article */

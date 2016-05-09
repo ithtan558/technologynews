@@ -1,6 +1,7 @@
 
 var app = angular.module('mean', [
  'ui.router',
+ 'oc.lazyLoad',
  'ngCookies',
  'ngSanitize',
  'ngResource',

@@ -266,7 +266,7 @@ footer a:active {
 }
 /* End footer*/
 .breadcrumb{
-	padding-left: 0px;
+	padding-left:15px;
 }
 a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover{
 	background-color: #e7e7e7;

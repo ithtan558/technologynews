@@ -6,7 +6,6 @@ angular.module('homeCtrl',[])
 				.success(function(data){
 					$scope.listArticleAll=data;
                     $scope.listArticle = filterFilter(data, term);
-                    console.log($scope.listArticle);
 					$scope.currentPage = 1;
 			        $scope.maxSize = 5;
 			        $scope.entryLimit = 10;
